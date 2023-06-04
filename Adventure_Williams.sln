@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure_Williams", "Adventure_Williams\Adventure_Williams.csproj", "{72F03A11-903E-4EEC-8173-9B65B7A5E261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBProject", "DBProject\DBProject.csproj", "{426E560A-292E-4212-B49F-7DBCE3C88114}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F03A11-903E-4EEC-8173-9B65B7A5E261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F03A11-903E-4EEC-8173-9B65B7A5E261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F03A11-903E-4EEC-8173-9B65B7A5E261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F03A11-903E-4EEC-8173-9B65B7A5E261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426E560A-292E-4212-B49F-7DBCE3C88114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426E560A-292E-4212-B49F-7DBCE3C88114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426E560A-292E-4212-B49F-7DBCE3C88114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426E560A-292E-4212-B49F-7DBCE3C88114}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62C816C6-EECA-4C06-95B2-112D229456AE}
+	EndGlobalSection
+EndGlobal

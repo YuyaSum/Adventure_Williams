@@ -1,0 +1,10 @@
+﻿@using DBProject.Models;
+@model List<DBProject.Models.Products>
+
+<div class="text-center">
+    <h2 class="display-4">Products</h2>
+    @foreach (Products p in Model)
+    {
+        <div>@p.Id @p.Name @p.ListPrice</div>
+    }
+</div>
