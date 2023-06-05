@@ -11,7 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Art\" />
+    <Folder Include="wwwroot\Art\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Art\BikeArt.jpg" />
   </ItemGroup>
 
 </Project>

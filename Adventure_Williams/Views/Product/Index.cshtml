@@ -1,0 +1,46 @@
+﻿@using DBProject.Models;
+@model List<DBProject.Models.Products>
+
+<div class="text-center">
+    <h2 class="display-4">Products</h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Name</p>
+            </th>
+            <th>
+                <p>Color</p>
+            </th>
+            <th>
+                <p>Price</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Products p in Model)
+        {
+            <tr>
+                <td>
+                    @p.Name
+                </td>
+                <td>
+                    @p.Color
+                </td>
+                <td>
+                    @p.ListPrice.ToString("C")
+                </td>
+            </tr>
+            @*<div>@p.Id @p.Name @p.ListPrice</div>*@
+        }
+    </tbody>
+</table>
+@*<div class="text-center">
+    <h2 class="display-4">Products</h2>
+    @foreach (Products p in Model)
+    {
+        <div>@p.Id @p.Name @p.ListPrice</div>
+    }
+</div>
+*@

@@ -1,0 +1,51 @@
+﻿@using DBProject.Models;
+@model List<Customer>
+
+<div class="text-center">
+    <h2 class="display-4">Products</h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>First Name</p>
+            </th>
+            <th>
+                <p>Last Name</p>
+            </th>
+            <th>
+                <p>Email Address</p>
+            </th>
+            <th>
+                <p>Phone Number</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Customer p in Model)
+        {
+            <tr>
+                <td>
+                    @p.FirstName
+                </td>
+                <td>
+                    @p.LastName
+                </td>
+                <td>
+                    @p.EmailAddress
+                </td>
+                <td>
+                    @p.Phone
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*<div class="text-center">
+    <h2 class="display-4">Customers</h2>
+    @foreach (Customer p in Model)
+    {
+        <div>@p.FirstName @p.LastName @p.EmailAddress @p.Phone</div>
+    }
+</div>*@

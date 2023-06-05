@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.background {
+    background-image: url('../Art/BikeArt.jpg');
+    color: #FFFFFF
+}
+
+.blackText {
+    color: black
+}

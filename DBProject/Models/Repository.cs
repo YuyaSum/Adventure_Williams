@@ -19,5 +19,10 @@ namespace DBProject.Models
             List<Products> products = _context.Products.ToList();
             return products;
         }
+        public IEnumerable<Customer> AllCustomers()
+        {
+            List<Customer> cust = _context.Customer.ToList();
+            return cust;
+        }
     }
 }

@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Williams_Adventure.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private Repository _repository;
-        public ProductsController(Repository context)
+        public ProductController(Repository context)
         {
             _repository = context;
         }
 
-        public IActionResult Products()
+        public IActionResult Index()
         {
             List<Products> products = (List<Products>)_repository.GetAllProductsandPrices();
             return View(products);
