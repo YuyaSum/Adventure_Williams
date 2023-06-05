@@ -2,7 +2,10 @@
 @model List<Customer>
 
 <div class="text-center">
-    <h2 class="display-4">Products</h2>
+    <h2 class="display-4">Customers</h2>
+    <div >
+        <a asp-controller="Customer" asp-action="Create">Create New Customer</a>
+    </div>
 </div>
 <table class="table">
     <thead>
@@ -19,23 +22,32 @@
             <th>
                 <p>Phone Number</p>
             </th>
+            <th>
+                <p>Options</p>
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Customer p in Model)
+        @foreach (Customer c in Model)
         {
             <tr>
                 <td>
-                    @p.FirstName
+                    @c.FirstName
                 </td>
                 <td>
-                    @p.LastName
+                    @c.LastName
                 </td>
                 <td>
-                    @p.EmailAddress
+                    @c.EmailAddress
                 </td>
                 <td>
-                    @p.Phone
+                    @c.Phone
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Customer", new { id = c.Id })">Edit</a>
+                    <a asp-controller="Customer" asp-action="Delete" asp-route-id="@c.Id">Delete</a> |
+                    <a asp-controller="Customer" asp-action="Edit" asp-route-id="@c.Id">Edit</a> |
+                    <a asp-controller="Customer" asp-action="Orders" asp-route-id="@c.Id">Orders</a>
                 </td>
             </tr>
         }
