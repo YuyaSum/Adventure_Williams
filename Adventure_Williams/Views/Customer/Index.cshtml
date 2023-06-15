@@ -44,7 +44,6 @@
                     @c.Phone
                 </td>
                 <td>
-                    <a href="@Url.Action("Edit", "Customer", new { id = c.Id })">Edit</a>
                     <a asp-controller="Customer" asp-action="Delete" asp-route-id="@c.Id">Delete</a> |
                     <a asp-controller="Customer" asp-action="Edit" asp-route-id="@c.Id">Edit</a> |
                     <a asp-controller="Customer" asp-action="Orders" asp-route-id="@c.Id">Orders</a>
@@ -53,11 +52,3 @@
         }
     </tbody>
 </table>
-
-@*<div class="text-center">
-    <h2 class="display-4">Customers</h2>
-    @foreach (Customer p in Model)
-    {
-        <div>@p.FirstName @p.LastName @p.EmailAddress @p.Phone</div>
-    }
-</div>*@

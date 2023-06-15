@@ -24,5 +24,22 @@ namespace DBProject.Models
             List<Customer> cust = _context.Customer.ToList();
             return cust;
         }
+        public Customer GetCustomer(int? id)
+        {
+            Customer customer = _context.Customer.FirstOrDefault(x => x.Id == id);
+            return customer;
+        }
+
+        public void DeleteCust(Customer cust) 
+        {
+            _context.Customer.Remove(cust);
+            _context.SaveChanges();
+        }
+        public void UpdateCustomer(Customer cust) { 
+            // Update thingy
+        }
+        public bool CustomerExists(int id) { 
+            return _context.Customer.Any(x => x.Id == id);
+        }
     }
 }
