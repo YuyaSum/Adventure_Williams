@@ -5,13 +5,13 @@ namespace Adventure_Williams.Controllers
 {
     public class CustomerController : Controller
     {
-        private Repository _context;
+        private Repository _repo;
         public CustomerController(Repository context) {
-            _context = context;
+            _repo = context;
         }
         public IActionResult Index()
         {
-            List<Customer> customers = (List<Customer>)_context.AllCustomers();
+            List<Customer> customers = (List<Customer>)_repo.AllCustomers();
             return View(customers);
         }
         public IActionResult Create()
@@ -21,7 +21,7 @@ namespace Adventure_Williams.Controllers
         //Get
         public IActionResult Edit(int id) 
         {
-            var customer = _context.GetCustomer(id);
+            var customer = _repo.GetCustomer(id);
             return View(customer);
         }
 
@@ -29,17 +29,18 @@ namespace Adventure_Williams.Controllers
         //[ValidateAntiForgeryToken]
         //public IActionResult Edit(Customer customer)
         //{
-        //    if (customer != null) { 
-                
+        //    if (customer != null)
+        //    {
+        //        return NotFound();
         //    }
-            
 
-        //    return View();
+
+        //    return RedirectToAction(nameof(Index));
         //}
 
         public IActionResult Delete(int id)
         {
-            var customer = _context.GetCustomer(id);
+            var customer = _repo.GetCustomer(id);
             if (customer == null)
             {
                 return NotFound();
@@ -52,14 +53,18 @@ namespace Adventure_Williams.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id) 
         {
-            var customer = _context.GetCustomer(id);
-            _context.DeleteCust(customer);
+            var customer = _repo.GetCustomer(id);
+            _repo.DeleteCust(customer);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Orders() 
-        { 
-            return View(); 
+        public IActionResult Orders(int id) 
+        {
+            var customerOrderView = new CustomerOrderView {
+                customer = _repo.GetCustomer(id),
+                orders = _repo.GetOrders(id).ToList()
+            };
+            return View(customerOrderView);
         }
     }
 }

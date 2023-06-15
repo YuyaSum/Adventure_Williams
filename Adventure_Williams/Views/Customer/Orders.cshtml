@@ -1,1 +1,36 @@
-﻿<h1>Work in progress</h1>
+﻿@using DBProject.Models;
+@model CustomerOrderView;
+
+<h1>@Html.DisplayNameFor(model => model.customer.FirstName)'s Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Product ID</p>
+            </th>
+            <th>
+                <p>Order Quantity</p>
+            </th>
+            <th>
+                <p>Unit Price</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.orders)
+        {
+            <tr>
+                <td>
+                    @item.ProductID
+                </td>
+                <td>
+                    @item.OrderQty
+                </td>
+                <td>
+                    @item.UnitPrice.ToString("C")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -9,18 +9,23 @@ using System.Runtime.Serialization;
 
 namespace DBProject.Models
 {
-    public partial class Order
+    public class Order
     {
-        [Key]
-        [Column("SalesOrderID")]
+        //[Column("CustomerID")]
+        //public int CustomerID { get; set; }
+        //[ForeignKey("CustomerID")]
+        //public Customer Customer { get; set; }
+        //public ICollection<OrderHeader> orderHeader { get; set; }
         public int SalesOrderID { get; set; }
-        public int SalesOrderDetail { get; set; }
+        [Key]
+        public int SalesOrderDetailID { get; set; }
         public int OrderQty { get; set; }
+        [ForeignKey("ProductID")]
         public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal UnitPriceDiscount { get; set; }
         public decimal LineTotal { get; set; }
-        public string rowguid { get; set; }
+        public Guid rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

@@ -22,12 +22,16 @@ public class AWContext : DbContext
     public virtual DbSet<Customer> Customer { get; set; } = null!;
     public virtual DbSet<Products> Products { get; set; } = null!;
     public virtual DbSet<Order> Orders { get; set; } = null!;
+    public virtual DbSet<CustomerAddress> CustomerAddress { get; set; } = null!;
+    public virtual DbSet<OrderHeader> OrderHeader { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Products>().ToTable("Product","SalesLT");
         modelBuilder.Entity<Customer>().ToTable("Customer", "SalesLT");
         modelBuilder.Entity<Order>().ToTable("SalesOrderDetail", "SalesLT");
+        modelBuilder.Entity<CustomerAddress>().ToTable("CustomerAddress", "SalesLT");
+        modelBuilder.Entity<OrderHeader>().ToTable("SalesOrderHeader", "SalesLT");
             
         base.OnModelCreating(modelBuilder);
     }

@@ -1,0 +1,78 @@
+﻿@using DBProject.Models;
+@model Products;
+
+<h4>Products</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductNumber" class="control-label"></label>
+                <input asp-for="ProductNumber" class="form-control" />
+                <span asp-validation-for="ProductNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StandardCost" class="control-label"></label>
+                <input asp-for="StandardCost" class="form-control" />
+                <span asp-validation-for="StandardCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListPrice" class="control-label"></label>
+                <input asp-for="ListPrice" class="form-control" />
+                <span asp-validation-for="ListPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Size" class="control-label"></label>
+                <input asp-for="Size" class="form-control" />
+                <span asp-validation-for="Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductCategoryID" class="control-label"></label>
+                <input asp-for="ProductCategoryID" class="form-control" />
+                <span asp-validation-for="ProductCategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductModelID" class="control-label"></label>
+                <input asp-for="ProductModelID" class="form-control" />
+                <span asp-validation-for="ProductModelID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellStartDate" class="control-label" ></label>
+                <input asp-for="SellStartDate" class="form-control" />
+                <span asp-validation-for="SellStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellEndDate" class="control-label" ></label>
+                <input asp-for="SellEndDate" class="form-control" />
+                <span asp-validation-for="SellEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<a asp-action="Index">Back to List</a>
+@*<form asp-action="Create">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Create"  /> |
+    
+</form>*@
