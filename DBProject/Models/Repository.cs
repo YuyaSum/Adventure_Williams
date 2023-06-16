@@ -1,5 +1,6 @@
 ﻿using DBProject.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,9 @@ namespace DBProject.Models
         public void DeleteCust(Customer cust) 
         {
              CustomerAddress custAddress = GetCustomerAddress(cust.Id);
-            _context.CustomerAddress.Remove(custAddress);
+            if (custAddress != null) {
+                _context.CustomerAddress.Remove(custAddress);
+            }
             _context.SaveChanges();
 
             _context.Customer.Remove(cust);
