@@ -21,5 +21,8 @@ public class Customer
     public string SalesPerson { get; set; } = null!;
     public string EmailAddress { get; set; } = null!;
     public string Phone { get; set; } = null!;
+    public string PasswordHash { get; set; } = null!;
+    public string PasswordSalt { get; set; } = null!;
+    public Guid rowguid { get; set; }
     public DateTime ModifiedDate { get; set; }
 }

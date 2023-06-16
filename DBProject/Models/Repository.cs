@@ -30,6 +30,11 @@ namespace DBProject.Models
             List<Customer> cust = _context.Customer.ToList();
             return cust;
         }
+        public void AddCustomer(Customer customer)
+        {
+            _context.Customer.Add(customer);
+            _context.SaveChanges();
+        }
         public Customer GetCustomer(int? id)
         {
             Customer customer = _context.Customer.FirstOrDefault(x => x.Id == id);
@@ -39,19 +44,12 @@ namespace DBProject.Models
             Products product = _context.Products.FirstOrDefault(x => x.Id == id);
             return product;
         }
-        public IEnumerable<Order> GetOrders(int id) {
-
-            var test = _context.Orders
-                .Join(
-                _context.OrderHeader
-                .Where(o => o.CustomerID == id),
-                oh => oh.SalesOrderID,
-                o => o.SalesOrderID,
-                (od, o) => od).ToList();
-                
-
-            return test;
-            
+        public IEnumerable<Order> GetOrders(int id)
+        {
+            var orders = _context.Orders
+                .Where(o => o.OrderHeader.CustomerID == id)
+                .ToList();
+            return orders;
         }
         public CustomerAddress GetCustomerAddress(int? id)
         {
@@ -96,10 +94,22 @@ namespace DBProject.Models
             _context.SaveChanges();
         }
         public void UpdateCustomer(Customer cust) { 
-            // Update thingy
+            Customer oldCustomer = _context.Customer.FirstOrDefault(p => p.Id == cust.Id);
+
+            if (oldCustomer != null)
+            {
+                oldCustomer.FirstName = cust.FirstName;
+                oldCustomer.MiddleName = cust.MiddleName;
+                oldCustomer.LastName = cust.LastName;
+                oldCustomer.EmailAddress = cust.EmailAddress;
+                oldCustomer.Phone = cust.Phone;
+                oldCustomer.ModifiedDate = DateTime.Now;
+            }
+            _context.SaveChanges();
         }
         public bool CustomerExists(int id) { 
             return _context.Customer.Any(x => x.Id == id);
         }
+        
     }
 }

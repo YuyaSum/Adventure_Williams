@@ -1,5 +1,7 @@
 ﻿using DBProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Adventure_Williams.Controllers
 {
@@ -18,25 +20,53 @@ namespace Adventure_Williams.Controllers
         {
             return View();
         }
-        //Get
+
+        [HttpPost, ActionName("Create")]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateConfirmed(Customer newCustomer, string pass)
+        {
+            byte[] salt = CreateSalt();
+            newCustomer.PasswordHash = HashPassword(pass, salt);
+            newCustomer.PasswordSalt = Convert.ToBase64String(salt);
+            newCustomer.rowguid = Guid.NewGuid();
+            newCustomer.ModifiedDate = DateTime.Now;
+            _repo.AddCustomer(newCustomer);
+            return RedirectToAction(nameof(Index));
+        }
+        private static byte[] CreateSalt()
+        {
+            byte[] bytes = new byte[7];
+            using (var rng = new RNGCryptoServiceProvider()) 
+            { 
+                rng.GetBytes(bytes);
+            }
+            
+            return bytes;
+        }
+        private static string HashPassword(string pass, byte[] salt) {
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(pass);
+
+            byte[] hashedBytes;
+            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(passwordBytes, salt, 10000, HashAlgorithmName.SHA256))
+            {
+                hashedBytes = rfc2898DeriveBytes.GetBytes(32); // Hashed password length set to 32 bytes
+            }
+            return Convert.ToBase64String(hashedBytes);
+
+        }
         public IActionResult Edit(int id) 
         {
             var customer = _repo.GetCustomer(id);
             return View(customer);
         }
 
-        //[HttpPost, ActionName("Edit")]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Edit(Customer customer)
-        //{
-        //    if (customer != null)
-        //    {
-        //        return NotFound();
-        //    }
-
-
-        //    return RedirectToAction(nameof(Index));
-        //}
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditConfirmed(Customer newCustomer)
+        {
+            _repo.UpdateCustomer(newCustomer);
+            return RedirectToAction(nameof(Index));
+        }
 
         public IActionResult Delete(int id)
         {

@@ -7,19 +7,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
+
+
 namespace DBProject.Models
 {
     public class Order
     {
-        //[Column("CustomerID")]
-        //public int CustomerID { get; set; }
-        //[ForeignKey("CustomerID")]
-        //public Customer Customer { get; set; }
-        //public ICollection<OrderHeader> orderHeader { get; set; }
+        public OrderHeader OrderHeader { get; set; }
+        [ForeignKey("OrderHeader")]
+        [Column("SalesOrderID")] // Specify the actual column name in the database
         public int SalesOrderID { get; set; }
         [Key]
+        [Column("SalesOrderDetailID")]
         public int SalesOrderDetailID { get; set; }
-        public int OrderQty { get; set; }
+        public short OrderQty { get; set; }
         [ForeignKey("ProductID")]
         public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
