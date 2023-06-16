@@ -32,7 +32,7 @@ namespace DBProject.Models
         }
         public void AddCustomer(Customer customer)
         {
-            _context.Customer.Add(customer);
+            _context.Add(customer);
             _context.SaveChanges();
         }
         public Customer GetCustomer(int? id)

@@ -23,10 +23,10 @@ namespace Adventure_Williams.Controllers
 
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateConfirmed(Customer newCustomer, string pass)
+        public IActionResult CreateConfirmed(Customer newCustomer, string password)
         {
             byte[] salt = CreateSalt();
-            newCustomer.PasswordHash = HashPassword(pass, salt);
+            newCustomer.PasswordHash = HashPassword(password, salt);
             newCustomer.PasswordSalt = Convert.ToBase64String(salt);
             newCustomer.rowguid = Guid.NewGuid();
             newCustomer.ModifiedDate = DateTime.Now;
@@ -35,9 +35,10 @@ namespace Adventure_Williams.Controllers
         }
         private static byte[] CreateSalt()
         {
-            byte[] bytes = new byte[7];
+            byte[] bytes = new byte[6];
             using (var rng = new RNGCryptoServiceProvider()) 
             { 
+                
                 rng.GetBytes(bytes);
             }
             
@@ -49,7 +50,7 @@ namespace Adventure_Williams.Controllers
             byte[] hashedBytes;
             using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(passwordBytes, salt, 10000, HashAlgorithmName.SHA256))
             {
-                hashedBytes = rfc2898DeriveBytes.GetBytes(32); // Hashed password length set to 32 bytes
+                hashedBytes = rfc2898DeriveBytes.GetBytes(32);
             }
             return Convert.ToBase64String(hashedBytes);
 
